@@ -136,7 +136,7 @@ git commit -a -m "Quick update to README"
 git commit -a -m "Try to commit new file"
 ```
 
-### view Coit History (`git log`)
+### view commit History (`git log`)
 
 ```
 git log
@@ -192,11 +192,99 @@ common use cases:
 - **Handle emergencies**: Stash your work to fix something urgent, then restore it.
 - **Keep your work-in-progress safe**: Avoid messy commits or losing changes.
 
-```
-git stash
-git stash -u
-git stash --include-untracked
-git stash push -m "WIP: homepage redesign"
-git stash list
-git stash show
-```
+`git stash`
+<br>
+`git stash -u`
+<br>
+`git stash --include-untracked`
+<br>
+`git stash push -m "WIP: homepage redesign"`
+<br>
+`git stash list`
+<br>
+`git stash show`
+<br>
+
+### What is stash stack?
+
+<br><br>
+Each time you run `git stash`. your changes are saved on top of a "stack".
+<br><br>
+The most recent stash is on top, and you can apply or drop stashes from the top down, or pick a specific one from the list.
+
+### Stash with a Message (`git stash push -m`)
+
+Add a message to remember what you stashed:
+`git stash push -m "WIP: homepage redesign"`
+
+### List stashes (`git stash list`)
+
+See all your saved stashes:
+<br>
+`git stash list`
+
+### Show stash Details (`git stash show`)
+
+See what was changed in the latest stash:
+<br>
+`git stash sow`
+<br>
+
+#### Show Full Diff
+
+` git stash show -p`
+
+#### Apply the Latest Stash (`git stash apply`)
+
+Restore your most recent stashed changes (keeps the stash in the stack):
+
+#### Apply a Specific Stash (`git stash apply stash@{n}`)
+
+Restore a specific stash from the list:
+
+`git stash apply stash@{1}`
+
+#### Pop the Stash (`git stash pop)`
+
+Apply the latest **and remove it from the stack**:
+
+#### Drop a Stash (`git stash drop`)
+
+Delete a specific stash when you no longer need it:
+<br>
+`git stash drop stash@{0}`
+
+#### Clear All Stashes (`git stash clear`)
+
+Delete all your stashes at once:
+<br>
+`git stash clear`
+
+#### Branch from a Stash (`git stash branch`)
+
+Create a new branch and apply a stash to it.
+<br>
+Useful if your stashed work should become its own feature branch:
+<br>
+`git stash branch new-feature stash@{0}`
+
+## Git History
+
+Git keeps a detailed record of every change made to your project.
+<br>
+You can use history commands to see what changed, when, and who made the change.
+<br>
+This is useful for tracking progress, finding bugs, and understanding your project's evolution.
+
+### Key Commands for Viewing History
+
+- `git log` - Show full commit history
+- `git log --online` - show a summary of commits
+- `git show <commit>` - Show details of specific commit
+- `git diff` - See unstaged changes
+- `git diff --staged` - See staged changes
+- `git diff <commit1> <commit2>` - Compare Tow Commits
+- `git log --author="neela0316"` - Show Commits by Author
+- `git log --since="2 weeks ago"` - Show Recent Commits
+- `git log --stat` - Show files changes per commit
+- `git log --graph` - Show a branch graph
