@@ -288,3 +288,29 @@ This is useful for tracking progress, finding bugs, and understanding your proje
 - `git log --since="2 weeks ago"` - Show Recent Commits
 - `git log --stat` - Show files changes per commit
 - `git log --graph` - Show a branch graph
+
+## Why and When to Use Git Help?
+
+<br>
+Git has many commands and options.
+<br>
+If you forget how a command works or want to learn about its options, you can use Git's built-in help.
+<br>
+This is the fastest way to get answers without leaving your terminal.
+
+- `git help <command>` - See the manual page for a command
+- `git <command> --help` - See help for a command (same as above)
+- `git <command> -h` - See a quick summary of options
+- `git help --all` - List all possible Git commands
+- `git help -g` - List guides and concepts
+
+## Git Branch
+
+In Git, a `branch` is like a separate workspace where you can make changes and try new ideas without efecting the main project. Think of it as a "parallel universe" for your code.
+
+- Developing a new feature
+- Fixing a bug
+- Experimenting with ideas
+- `git branch hello-world-images` - Creating a New Branch
+- `git branch` - Listing all branches
+- `git checkout hello-world-images` - Switching Between Branches
