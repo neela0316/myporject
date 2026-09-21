@@ -36,3 +36,24 @@
 - Check file permissions: private keys should be readable only by you (`chmod 600 ~/.ssh/id_rsa`).
 - Use `ssh -v` for verbose output to debug problems.
 - Make sure you're using the correct SSH URL for your remote (starts with `git@`).
+
+## Git GitHub Add SSH
+
+### Add SSH to GitHub
+
+- Now that you have generated your SSH key, you need to add your **public Key** to your GitHub account.
+
+### Add the key to GitHub
+
+Avatar Icon -> Settings -> SSH and GPG Keys -> New SSH Key -> Add SSH Key
+
+### Pull from Remote
+
+- Fetch
+- Merge
+- Pull
+- `pull` is combination of 2 different commands:
+  - `fetch`
+  - `merge`
+
+
