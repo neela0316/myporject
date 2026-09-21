@@ -384,3 +384,88 @@ This is how you bring your work together after working separately on different f
 - **Fast-forward merge:** Happens when no new commits diverged-Git just moves the branch pointer forward.
 - **No-fast-forward merge:** Use `git merge --no-ff branch` to always create a merge commit, preserving branch history.
 - If you want to combine all the changes from a branch into a single commit (instead of keeping every commit), use `git merge --squash branch-name`. This is useful for cleaning up commit history before merging.
+
+## Git Workflow
+
+### Git Workflow Commands Overview
+
+- <u>Working Directory</u> - When you make changes
+- <u>git add</u> - Stage changes
+- <u>git commit</u> - Share changes with others
+- <u>git push</u> - Check what's going on
+- <u>git status</u> - Check what's going on
+- <u>Undo/Amend</u> - Fix mistakes (`git restore`, `git reset`, `git commit --amend`)
+
+### Understanding the Git Workflow
+
+- Git uses a distributed workflow that allows you to work on your code, stage changes, and commit them to your local repository before sharing with others.
+- Understanding this workflow is essential for effective version control.
+  - **Working Directory**: Where you make changes to your files.
+  - **Staging Area (Index)**: Where you prepare changes before committing.
+  - **Repository**: Where your committed history is stored.
+
+  ### Best Practices for Git Workflow
+  - Commit frequently with clear, meaningful messages.
+  - Check your status often with `git status` to avoid surprises.
+  - Stage only what you intend to commit. Use `git add <file>` for precision.
+  - Push regularly to back up your work and share with others.
+  - Review your changes with `git diff` before committing.
+
+### Working Directory
+
+### Staging Changes (`git add`)
+
+### Committing changes (`git commit`)
+
+### Pushing changes (`git push`)
+
+### Checking Status (`git status`)
+
+#### Undoing and Amending changes
+
+- `git restore <file>` - Undo changes in your working directory (before staging).
+- `git restore --staged <file>` - Unstage a file (move it out of the Staging Area).
+- `git reset HEAD~` - Undo your last commit (keeps changes in your working directory).
+- `git commit --amend` - change the last commit message or add files to your last commit.
+
+### **Tips**
+
+- Use `git status` often to see what's going on.
+- If you commit the worng thing, use `git reset` or `git commit --amend` before pushing.
+- Stage only what you want to commit-use `git add <file-name>` for specific files.
+- Don't forget to push after committing, or your changes won't show up for others.
+- If you're not sure, ask for help or look up the error message-everyone makes mistakes!
+
+## Summary of Git Best Practices
+
+- Commit Often
+- Write Clear Commit Messages
+- Use Branches
+- Pull Before You Push
+- Review Changes Before Committing
+- Keep Repositories Small
+- Use .gitignore
+- Tag Releases
+
+## Summary of Git Terms
+
+- <u>Branch</u>
+- <u>Checkout</u>
+- <u>Clone</u> - `git clone https://github.com/user/repo.git`
+- <u>Commit</u>
+- <u>Conflict</u>
+- <u>Fetch</u> - `git fetch origin`
+- <u>Fork</u>
+- <u>HEAD</u> - `git log --online`
+- <u>Index (Staging Area)</u>
+- <u>Merge</u>
+- <u>Origin</u>
+- <u>Pull</u> - `git pull origin main`
+- <u>Push</u> - `git push origin main`
+- <u>Rebase</u> - `git rebase main`
+- <u>Remote</u> -`git remote -v`
+- <u>Repository (Repo)</u>
+- <u>Stash</u>
+- <u>Tag</u>
+- <u>Upstream</u> - `git push --set-upstream origin main`
+- <u>Working Directory</u>
