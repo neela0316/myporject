@@ -56,4 +56,15 @@ Avatar Icon -> Settings -> SSH and GPG Keys -> New SSH Key -> Add SSH Key
   - `fetch`
   - `merge`
 
+## Git Push to GitHub
 
+Key Push Commands
+
+- Basic Push -`git push origin`
+- Force Push - `git push --force origin feature-branch` or `git push --force-with-lease origin feature-branch`
+- Push Tags
+  - All Tags - `git push --tags`
+  - Specific Tag - `git push origin v1.0`
+- Troubleshooting
+  - **Non-fast-forward error**: Happens if someone else pushed to the branch. Run `git pull --rebase` before pushing again.
+  - **Authentication failed**: Make sure you have access to the repository and your credentials are correct.
