@@ -120,15 +120,40 @@ git status
 
 A **Commit** is like a save point in your project.
 <br>
-It records a snapshot of your files at certain time, with a message describing what chaged.
+It records a snapshot of your files at certain time, with a message describing what changed.
 <br>
 You can always go back to pervious commit if you need to.
 <br>
 Here are some key commands for commits:
 
 - `git commit -m "message"` - Commit staged changes with a message
-- `git commit -a -m "message"` - commit all tracked chages (skip staging)
+  - `git commit -m "first release of Hello World!"`
+- `git commit -a -m "message"` - commit all tracked changes (skip staging)
 - `git log` - See commit history
+
+<br>
+
+**Warning:** Skipping the staging step can make you include unwanted changes. Use with care.
+<br>
+
+**Note:** `git commit -a` does <u>not</u> work for new/untracked files. You must use `git add <file>`first for new files
+
+- If you ust type `git commit` (no `-m`), your default editor will open so you can write a detailed, multi-line message:
+- **Create an empty commit:** `git commit --allow-empty -m "Start project"`
+- **Use previous commit message (no editor):** `git commit --no-edit`
+- **Quickly add staged changes to last commit, keep message:** `git commit --amend --no-edit`
+
+#### Troubleshooting common commit Mistakes
+
+- **Forgot to stage a file?**
+  <br>
+  If you run `git commit -m "message"` but forgot to `git add` a file, just add it and commit again. Or use `git commit --amend` to add it to our last commit.
+- **Typo in your commit message?**
+  <br>
+  Use `git commit --amend -m "Corrected message"` to fix the last commit message.
+- **Accidentally committed the wrong files?**
+  <br>
+  You can use `git reset --soft HEAD-1` to undo the last commit and keep your changes staged.
 
 ```
 git commit -m "First release of Hello World!"
@@ -146,12 +171,12 @@ git log --stat
 
 ## Git Tagging
 
-- `git tag <tagname>` - Create a lightweight tag
-- `git tag -a <tagname> -m "message"` - Create an annotated tag
-- `git tag -a <tagname> <commit-hash)>` - Tag a specific commit
+- `git tag <tag-name>` - Create a lightweight tag
+- `git tag -a <tag-name> -m "message"` - Create an annotated tag
+- `git tag -a <tag-name> <commit-hash)>` - Tag a specific commit
 - `git tag` - List tags
-- `git show <tagname>` - Show tag details
-- A **tag** in git like lable or bookmark for a specific commit.
+- `git show <tag-name>` - Show tag details
+- A **tag** in git like label or bookmark for a specific commit.
 - Tags are most often used to mark important points in your project history, like releases (`v1.0` or `v2.0`).
 - Tags are a simple and reliable way to keep track of versions and share them with your team or users.
 
@@ -252,12 +277,14 @@ Apply the latest **and remove it from the stack**:
 
 Delete a specific stash when you no longer need it:
 <br>
+
 `git stash drop stash@{0}`
 
 #### Clear All Stashes (`git stash clear`)
 
 Delete all your stashes at once:
 <br>
+
 `git stash clear`
 
 #### Branch from a Stash (`git stash branch`)
@@ -266,7 +293,16 @@ Create a new branch and apply a stash to it.
 <br>
 Useful if your stashed work should become its own feature branch:
 <br>
+
 `git stash branch new-feature stash@{0}`
+
+#### Troubleshooting
+
+- **Did you lose your changes?** Try `git stash list` and `git stash apply` to recover stashed work.
+- **Stash didn't apply cleanly?** You may need to resolve conflicts, just like a merge.
+- Git will mark the conflicts in your files for you to resolve.
+- **Untracked files missing?** By default, untracked files are not stashed. If you need to stash them, use `git stash -u` next time.
+- **Accidentally cleared all stashes?** Unfortunately, git stash clear is permanent. Always double-check before running it!
 
 ## Git History
 
@@ -288,6 +324,151 @@ This is useful for tracking progress, finding bugs, and understanding your proje
 - `git log --since="2 weeks ago"` - Show Recent Commits
 - `git log --stat` - Show files changes per commit
 - `git log --graph` - Show a branch graph
+
+### Troubleshooting
+
+- **Can't see your changes?** Make sure you have committed your work. Uncommitted changes won't appear in the history.
+- **Log is too long?** Use `git log --oneline` or `git log --since` to make it easier to read.
+- **How do I quit the log view?** Press q to exit the log or diff view.
+
+## Why and When to Use Git Help?
+
+<br>
+Git has many commands and options.
+<br>
+If you forget how a command works or want to learn about its options, you can use Git's built-in help.
+<br>
+This is the fastest way to get answers without leaving your terminal.
+
+- `git help <command>` - See the manual page for a command
+- `git <command> --help` - See help for a command (same as above)
+- `git <command> -h` - See a quick summary of options
+- `git help --all` - List all possible Git commands
+- `git help -g` - List guides and concepts
+
+## Git Branch
+
+In Git, a `branch` is like a separate workspace where you can make changes and try new ideas without effecting the main project. Think of it as a "parallel universe" for your code.
+
+- Developing a new feature
+- Fixing a bug
+- Experimenting with ideas
+- `git branch hello-world-images` - Creating a New Branch
+- `git branch` - Listing all branches
+- `git checkout hello-world-images` - Switching Between Branches
+
+- **Rename a branch:** `git branch -m old-name new-name`
+- **List all branches:** `git branch`
+- **Switch branches:** `git checkout branch-name` or `git switch branch-name`
+- **Delete a branch (not merged):** `git branch -D branch-name`
+- **See which branch you're on:** `git status`
+
+## Git Branch Merge
+
+Merging in Git means combining the changes from one branch into another.
+<br>
+This is how you bring your work together after working separately on different features or bug fixes.
+
+#### Common `git merge` Options
+
+- `git merge` - Merge a branch into your current branch
+- `git merge --no-ff` - Always create a merge commit
+- `git -squash` - Combine changes into a single commit
+- `git merge --abort` - Abort a merge in progress
+
+#### Practical Examples
+
+- **Abort a merge:** `git merge --abort`
+- **Check status during a merge:** `git status`
+- **Resolve a conflict and complete the merge:** Edit the conflicted file(s), then `git add file` and `git commit`
+- **Fast-forward merge:** Happens when no new commits diverged-Git just moves the branch pointer forward.
+- **No-fast-forward merge:** Use `git merge --no-ff branch` to always create a merge commit, preserving branch history.
+- If you want to combine all the changes from a branch into a single commit (instead of keeping every commit), use `git merge --squash branch-name`. This is useful for cleaning up commit history before merging.
+
+## Git Workflow
+
+### Git Workflow Commands Overview
+
+- <u>Working Directory</u> - When you make changes
+- <u>git add</u> - Stage changes
+- <u>git commit</u> - Share changes with others
+- <u>git push</u> - Check what's going on
+- <u>git status</u> - Check what's going on
+- <u>Undo/Amend</u> - Fix mistakes (`git restore`, `git reset`, `git commit --amend`)
+
+### Understanding the Git Workflow
+
+- Git uses a distributed workflow that allows you to work on your code, stage changes, and commit them to your local repository before sharing with others.
+- Understanding this workflow is essential for effective version control.
+  - **Working Directory**: Where you make changes to your files.
+  - **Staging Area (Index)**: Where you prepare changes before committing.
+  - **Repository**: Where your committed history is stored.
+
+  ### Best Practices for Git Workflow
+  - Commit frequently with clear, meaningful messages.
+  - Check your status often with `git status` to avoid surprises.
+  - Stage only what you intend to commit. Use `git add <file>` for precision.
+  - Push regularly to back up your work and share with others.
+  - Review your changes with `git diff` before committing.
+
+### Working Directory
+
+### Staging Changes (`git add`)
+
+### Committing changes (`git commit`)
+
+### Pushing changes (`git push`)
+
+### Checking Status (`git status`)
+
+#### Undoing and Amending changes
+
+- `git restore <file>` - Undo changes in your working directory (before staging).
+- `git restore --staged <file>` - Unstage a file (move it out of the Staging Area).
+- `git reset HEAD~` - Undo your last commit (keeps changes in your working directory).
+- `git commit --amend` - change the last commit message or add files to your last commit.
+
+### **Tips**
+
+- Use `git status` often to see what's going on.
+- If you commit the worng thing, use `git reset` or `git commit --amend` before pushing.
+- Stage only what you want to commit-use `git add <file-name>` for specific files.
+- Don't forget to push after committing, or your changes won't show up for others.
+- If you're not sure, ask for help or look up the error message-everyone makes mistakes!
+
+## Summary of Git Best Practices
+
+- Commit Often
+- Write Clear Commit Messages
+- Use Branches
+- Pull Before You Push
+- Review Changes Before Committing
+- Keep Repositories Small
+- Use .gitignore
+- Tag Releases
+
+## Summary of Git Terms
+
+- <u>Branch</u>
+- <u>Checkout</u>
+- <u>Clone</u> - `git clone https://github.com/user/repo.git`
+- <u>Commit</u>
+- <u>Conflict</u>
+- <u>Fetch</u> - `git fetch origin`
+- <u>Fork</u>
+- <u>HEAD</u> - `git log --online`
+- <u>Index (Staging Area)</u>
+- <u>Merge</u>
+- <u>Origin</u>
+- <u>Pull</u> - `git pull origin main`
+- <u>Push</u> - `git push origin main`
+- <u>Rebase</u> - `git rebase main`
+- <u>Remote</u> -`git remote -v`
+- <u>Repository (Repo)</u>
+- <u>Stash</u>
+- <u>Tag</u>
+- <u>Upstream</u> - `git push --set-upstream origin main`
+- <u>Working Directory</u>
 
 ## Why and When to Use Git Help?
 
