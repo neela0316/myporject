@@ -68,3 +68,12 @@ Key Push Commands
 - Troubleshooting
   - **Non-fast-forward error**: Happens if someone else pushed to the branch. Run `git pull --rebase` before pushing again.
   - **Authentication failed**: Make sure you have access to the repository and your credentials are correct.
+
+## Git Pull Brach from gitHub
+
+### Pulling a Branch from GitHub
+
+- Now continue working on our new `branch` in our local Git.
+- Lets `pull` from our GitHub repository again so that our code is up-to-date:
+- Now our main `branch` is up to date. And we can see that there is a new `brach` available on GitHub.
+- Do a quick `status` check:
