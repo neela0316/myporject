@@ -210,3 +210,103 @@ If you can't fix a commit during a rebase (for example, if a conflict can't be r
 - Use `git rebase --abort` to cancel a rebase in progress.
 - If you encounter conflicts during a rebase, resolve them and then use `git rebase --continue` to continue the rebase process.
 - If you can't fix a commit during a rebase, use `git rebase --skip` to skip it.
+
+### What is Git Reflog?
+
+- `git reflog` records updates to the tip of branches and HEAD.
+
+- It lets you see where your branch and HEAD have been, even changes you made by mistake.
+
+- This is useful for recovering lost commits or undoing a reset.
+
+- Use `git reflog` when you need to:
+
+- Recover lost commits or changes
+- Undo a reset or a merge
+  See the history of your branch and HEAD
+
+### Tips & Best Practices
+
+- Use `git reflog` regularly to keep track of your changes
+- Use `git reflog` to recover lost commits or changes
+- Use `git reflog` expire to clean up old entries
+
+### Troubleshooting
+
+If you encounter issues with git reflog, try:
+
+- Checking the Git documentation for more information
+- Searching online for solutions to specific issues
+- Seeking help from a Git expert or community
+
+## Git Recovery
+
+### Recover Lost Commits with `git reflog`
+
+### Restore a Deleted Branch `git checkout -b branch-name <commit-hash>`
+
+### Recover a Deleted or Changed File `git restore filename.txt`
+
+### Recover from a Hard Reset `git reset --hard`
+
+### Tips & Best Practices
+
+- Regularly commit your changes to avoid losing work
+- Use `git reflog` to find lost commits
+- Use `git restore` to recover deleted or changed files
+
+## Git Ignore and `.gitignore`
+
+- The `.gitignore` file tells Git which files and folders to ignore (not track).
+- The `.gitignore` file itself is tracked by Git, so everyone using the repository ignores the same files.
+
+### Wildcards & Patterns
+
+- `*` matches any number of characters
+- `?` matches a single character
+- `[abc]` matches any character in the set
+- `[!abc]` matches any character not in the set
+
+### Negation (!)
+
+- Use `!` to not ignore something that would otherwise be ignored. This is called an exception:
+
+```
+*.log
+!important.log
+```
+
+This ignores all `.log` files except `important.log`.
+
+### Comments and Blank Lines
+
+Lines starting with `#` are comments and are ignored by Git. Blank lines are also ignored. Use comments to explain your rules:
+
+```
+# Ignore log files
+*.log
+
+# Ignore temp folders
+temp/
+```
+
+### Local & Personal Ignore Rules
+
+If you want to ignore files only for yourself (not for everyone who uses the repository), add them to `.git/info/exclude`. This works just like `.gitignore` but is not shared.
+
+`git config --global core.excludesfile ~/.gitignore_global`
+
+### How to Stop Tracking a File
+
+If you add a file to `.gitignore` but Git is still tracking it, you need to tell Git to stop:
+`git rm --cached filename.txt`
+
+### Tips & Troubleshooting
+
+- Check for typos-`.gitignore` is case-sensitive!
+- If a file is already tracked, use `git rm --cached` to stop tracking it.
+- Use comments (`#`) to explain tricky rules for your teammates.
+- Use `git status` to see if your ignored files are being tracked.
+- **Remember**: `.gitignore` only affects files that are not already tracked by Git.
+
+## Git `.gitattributes`
