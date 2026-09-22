@@ -310,3 +310,52 @@ If you add a file to `.gitignore` but Git is still tracking it, you need to tell
 - **Remember**: `.gitignore` only affects files that are not already tracked by Git.
 
 ## Git `.gitattributes`
+
+The `.gitattributes` file is a special file that tells Git how to handle specific files in your repository.
+
+- Force Unix Line Endings for All Text Files - `*.txt text eol=lf`
+- Set LF for Shell Scripts - `*.sh text eol=lf`
+- Mark PNG Files as Binary - `*.png binary`
+
+- Track PSD Files with LFS - `*.psd filter=lfs diff=lfs merge=lfs -text`
+- Custom Diff for Markdown - `*.md diff=markdown`
+- Check Attributes of a File - `git check-attr --all README.md`
+- Ignore Files on Export `docs/* export-ignore`
+
+### Tips & Best Practices
+
+- Patterns work like `.gitignore` (wildcards, etc).
+- Put `.gitattributes` in subfolders for rules that only apply there.
+- Changing `.gitattributes` won't retroactively fix files already committed-re-add files to update them.
+- Use `git check-attr` to debug attribute issues.
+
+## Git LFS
+
+**Git LFS (Large File Storage)** is an extension for Git that helps you manage large files (like videos, images, or datasets) efficiently.
+
+- Install Git LFS - `git lfs install`
+- Track `.psd` Files - `git lfs track "*.psd"`
+
+```
+git lfs track "*.zip"
+git lfs track "data/*.csv"
+git lfs track "images/*.{png,jpg}"
+```
+
+- `.gitattributes` Entry - `*.psd filter=lfs diff=lfs merge=lfs -text`
+
+### Add, Commit, and Push LFS Files
+
+- **Add** files as usual: `git add largefile.psd`
+- **Commit:** `git commit -m "Add large file"`
+- **Push:** `git push origin main`
+
+### Check LFS Status
+
+- List LFS Files `git lfs ls-files`
+
+- Untrack/Remove Files from LFS
+  <br>
+  `git lfs untrack "*.psd"`
+  <br>
+  `git add .gitattributes`
