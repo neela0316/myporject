@@ -359,3 +359,137 @@ git lfs track "images/*.{png,jpg}"
   `git lfs untrack "*.psd"`
   <br>
   `git add .gitattributes`
+
+  ## Git CI/CD
+
+  **CI/CD** stands for **Continuous Integration** and ** Continuous Deployment/Delivery**.
+  <br>
+  It means your code is automatically test and deployed every time you push.
+  <br>
+  This helps you catch bugs early and deliver features faster, with less manual work.
+
+  ### Use of CI/CD
+
+  CI/CD automates the process of testing and deploying your code. This means:
+  - Find bugs before they reach users
+  - Deploy changes faster and more safely
+  - Reduce manual steps and mistakes
+  - Get quick feedback on every push
+
+### Popular CI/CD Services
+
+- GitHub Actions: Built into GitHub, uses YAML files in `.github/workflows/`
+- **GitLab CI/CD:** Built into GitLab, uses `.gitlab-ci.yml`
+- **CircleCI:** Works with GitHub/GitLab, easy setup for many languages
+- **Travis CI:** Popular for open-source, uses `.travis.yml`
+- **Azure Pipelines:** Works with Azure DevOps and GitHub, supports many platforms
+
+### Key CI/CD Concepts
+
+Here are some important terms:
+
+- **Workflow:** A series of jobs that run together
+- **Job:** A group of steps that run together
+- **Step:** A single task, like checking out code or running tests
+- **Runner:** The computer/server that runs your jobs
+- **Trigger:** Decides when your workflow runs
+- **Environment Variables:** Settings for your workflow
+- **Secrets:** Passwords or API keys
+
+## Git Hooks
+
+**Git hooks** are scripts that run automatically when certain Git events happen, like making a commit or pushing code.
+
+### List Available Hooks
+
+`ls .git/hooks`
+
+### Enable a Hook
+
+`mv .git/hook/pre-commit.sample .git/hooks/pre-commit`
+
+`chmod +x .git/hooks/pre-commit`
+
+### Types of Hooks
+
+There are many types of hooks, but the most common are:
+
+- `pre-commit`
+- `commit-msg`
+- `pre-push`
+- `pre-receive`
+- `post-receive`
+
+## Git Submodules
+
+**Git submodules** let you include one Git repository inside another as a subdirectory.
+
+### Add a Submodule
+
+`git submodule add https://github.com/example/library.git libs/library`
+
+### Clone a Repo with Submodules
+
+`git submodule init` <br>
+`git submodule update`
+
+### Clone with Submodules
+
+`git clone --recurse-submodules https://github.com/user/repo.git`
+
+### Submodule Status
+
+`git submodule status`
+
+### Run commands in All Submodules
+
+`git submodule foreach git status`
+
+### Update submodules
+
+`git submodule update --remote`
+
+### Remove a Submodule
+
+- To remove a submodule:
+  - Delete the relevant section from `.gitmodules`
+  - Remove the submodule directory from your working tree
+  - Run `git rm --cached path/to/submodule`
+
+## Git Advanced Remote
+
+**Remotes** are references to remote repositories.
+
+They let you collaborate, fetch, and push code to shared projects on services like GitHub, GitLab, or Bitbucket.
+
+### Add a Remote
+
+`git remote add upstream https://github.com/other/repo.git`
+
+### Remove a Remote
+
+`git remote remove upstream`
+
+### Rename a Remote
+
+`git remote rename origin main-origin`
+
+### List Remotes
+
+`git remote -v`
+
+### Show Remote Details
+
+`git remote show upstream`
+
+### Fetch from a Remote
+
+`git fetch upstream`
+
+### Push to a Remote
+
+`git push upstream main`
+
+### Track a Remote Branch
+
+`git checkout -b new-feature upstream/new-feature`
